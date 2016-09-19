@@ -8,16 +8,16 @@ from datetime import datetime
 from time import sleep
 
 # Основные переменные
-updater = Updater(token = '280467809:AAG9oeB9H2zsgHy-eZLz_YpuqXO7Mi8pQ3I')
+updater = Updater(token = BOT_TOKEN)
 
-# BlogForMan time
-BFM_morning = ('9:45')
-BFM_day = ('14:45')
-BFM_evening = ('19:45')
-# OhWhoops time
-OW_morning = ('10:15')
-OW_day = ('15:15')
-OW_evening = ('20:15')
+# 
+x_morning = (time)
+x_day = (time)
+x_evening = (time)
+# 
+y_morning = (time)
+y_day = (time)
+y_evening = (time)
 
 # Логи бота
 root = logging.getLogger()
@@ -35,45 +35,45 @@ def start(bot, update):
     while True:
         d = datetime.today()
         time_x = d.strftime('%H:%M')
-        if time_x in BFM_morning:
+        if time_x in x_morning:
             blogforman(bot, update)
             sleep(59)
-        if time_x in BFM_day:
+        if time_x in x_day:
             blogforman(bot, update)
             sleep(59)
-        if time_x in BFM_evening:
+        if time_x in x_evening:
             blogforman(bot, update)
             sleep(59)
-        if time_x in OW_morning:
+        if time_x in y_morning:
             ohwhoops(bot, update)
             sleep(59)
-        if time_x in OW_day:
+        if time_x in y_day:
             ohwhoops(bot, update)
             sleep(59)
-        if time_x in OW_evening:
+        if time_x in y_evening:
             ohwhoops(bot, update)
             sleep(59)
 
-# Функция отвечающая за парсинг фото для 'BlogForMan'
+# Функция отвечающая за парсинг фото для 'channelexample'
 def blogforman(bot, update):
     i = 0
     while True:
-        for file in os.listdir("blogforman_images/"):
+        for file in os.listdir("images/"):
             if file.split('.')[-1] == 'jpg':
-                bot.sendPhoto(chat_id = '@blogforman', photo = open('blogforman_images/' + file, 'rb'))
-                os.remove('blogforman_images/' + file)
+                bot.sendPhoto(chat_id = '@channelexample', photo = open('images/' + file, 'rb'))
+                os.remove('images/' + file)
                 i = i+1
                 if i >4:
                     return False
 
-# Функция отвечающая за парсинг фото для 'Oh Whoops'
+# Функция отвечающая за парсинг фото для 'channelexample'
 def ohwhoops(bot, update):
     n = 0
     while True:
-        for file in os.listdir("ohwhoops_images/"):
+        for file in os.listdir("images/"):
             if file.split('.')[-1] == 'jpg':
-                bot.sendPhoto(chat_id = '@ohwhoops', photo = open('ohwhoops_images/' + file, 'rb'))
-                os.remove('ohwhoops_images/' + file)
+                bot.sendPhoto(chat_id = '@channelexample', photo = open('images/' + file, 'rb'))
+                os.remove('images/' + file)
                 n = n+1
                 if n >4:
                     return False
